@@ -1,8 +1,30 @@
-# Ignore Gradle project-specific cache directory
-.gradle
+# --- GRADLE ---
+.gradle/
+build/
+/out/
+.gradletasknamecache
 
-# Ignore Gradle build output directory
-build
+# --- JAVA ---
+*.class
+*.log
+*.jar
+*.war
+*.ear
+/bin/
 
-# Ignore Kotlin plugin data
-.kotlin
+# --- VS CODE ---
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+*.code-workspace
+
+# --- SYSTEM ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- GRADLE WRAPPER (Optionnel mais recommandé) ---
+# On garde généralement le wrapper pour que les autres puissent compiler
+# sans installer Gradle, donc on ne l'ignore PAS.
+ !gradle/wrapper/gradle-wrapper.jar
