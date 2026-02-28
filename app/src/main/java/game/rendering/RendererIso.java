@@ -1,13 +1,13 @@
-package Rendering;
+package game.rendering;
 
-import Game.Object.GameLogic;
-import Game.Object.PlayerTest;
+import java.awt.Graphics2D;
 
-import java.awt.*;
+import game.logic.core.Logic;
+import game.logic.entities.PlayerPoc;
 
 public class RendererIso implements GameRenderer {
 
-    public void render(Graphics2D g, PlayerTest player) {
+    public void render(Graphics2D g, PlayerPoc player) {
 
     }
 
@@ -17,7 +17,7 @@ public class RendererIso implements GameRenderer {
     }
 
     @Override
-    public void setGameLogic(GameLogic gameLogic) {
+    public void setLogic(Logic Logic) {
 
     }
 

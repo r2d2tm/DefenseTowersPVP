@@ -1,12 +1,16 @@
-package Game.Object;
+package game.logic.entities;
 
-import Game.Common.GameConfig;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.JsonNode;
+// permet d'utiliser les membre de Constants sans mettre le nom de classe
+import static game.shared.Constants.DELAY_BETWEEN_FRAMES;
+
 import java.io.File;
-import Rendering.Renderable;
 
-public class PlayerTest implements Renderable {
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import game.rendering.Renderable;
+
+public class PlayerPoc implements Renderable {
     private String Name = "";
     private  double posX, posY; // Utiliser double pour plus de précision en 3D plus tard
     private double height, width; // dimensions en metre du joueur
@@ -21,14 +25,14 @@ public class PlayerTest implements Renderable {
         return posY;
     }
 
-    public PlayerTest(String name){
+    public PlayerPoc(String name){
         LoadInitConfig(name);
     }
 
     private void LoadInitConfig(String configName) {
         try {
             // Lecture du fichier JSON situé dans le dossier Configs
-            File configFile = new File("Configs/PlayerTest.json");
+            File configFile = new File("app/src/main/resources/configurations/PlayerPoc.json");
 
             // Utilisation d'une bibliothèque comme Jackson (ObjectMapper)
             ObjectMapper mapper = new ObjectMapper();
@@ -69,9 +73,7 @@ public class PlayerTest implements Renderable {
         // à la vitesse de speed , quelle distance parcourt-on ?  produit en croix
         // 5m = 1 sec  donc en 16ms je parcours 5*16 / 1000  note 60fps = 16ms pour chaque frame
 
-        double disanceParcourue = speed * GameConfig.DELAY_BETWEEN_FRAMES / 1000;
-
-
+        double disanceParcourue = speed * DELAY_BETWEEN_FRAMES / 1000;
 
         // Je suis a un point x1,y1 et je vais vers un point x2,y2.
         // On peut représenter un triangle rectange entre les deux point où la disance parcourue est l'hypotenuse

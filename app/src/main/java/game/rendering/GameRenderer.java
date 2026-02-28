@@ -1,13 +1,12 @@
-package Rendering;
+package game.rendering;
 
-import Game.Object.GameLogic;
-import Game.Object.PlayerTest;
 
+import game.logic.core.Logic;
 import java.awt.*;
 
 public interface GameRenderer {
 
     void render(Graphics2D g);
 
-    void setGameLogic(GameLogic gameLogic);
+    void setLogic(Logic Logic);
 }

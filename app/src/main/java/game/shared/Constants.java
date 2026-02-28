@@ -1,6 +1,6 @@
-package game.logic.common;
+package game.shared;
 
-public class Constants {
+public final class Constants {
 
     public static final long FPS_MAX = 60;
     public static final long DELAY_BETWEEN_FRAMES = (long) (1.0 / FPS_MAX * 1000); // en millisec
@@ -9,5 +9,6 @@ public class Constants {
     public static final double WORLD_WIDTH_METERS = 100.0;
     public static final double WORLD_HEIGHT_METERS = WORLD_HEIGHT_PIXEL * WORLD_WIDTH_METERS / WORLD_WIDTH_PIXEL;
 
+    private Constants() {} // Empêche de faire 'new Constants()'
 
 }

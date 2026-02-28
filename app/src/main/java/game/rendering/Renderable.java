@@ -1,5 +1,4 @@
-package Rendering;
-
+package game.rendering;
 
 public interface Renderable {
     double getPosX();    // en mètres

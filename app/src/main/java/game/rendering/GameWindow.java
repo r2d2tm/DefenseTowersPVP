@@ -1,12 +1,12 @@
 // inspiré de  - https://stackoverflow.com/a/1963684
-// on sépare la couche gameLogic du rendering
+// on sépare la couche Logic du rendering
 // la gameloop et le render sont appelés ici
 
 
-package Rendering;
+package game.rendering;
 
-import Game.Common.GameConfig;
-import Game.Object.GameLogic;
+import static game.shared.Constants.*; // permet d'utiliser les membre de Constants sans mettre le nom de classe
+
 
 
 import javax.swing.*;
@@ -15,6 +15,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import game.logic.core.Logic;
 
 public class GameWindow extends JFrame implements Runnable {
     private boolean isRunning = true;
@@ -25,7 +26,7 @@ public class GameWindow extends JFrame implements Runnable {
     private Graphics2D graphics;
     private GameRenderer currentRenderer;
 
-    private GameLogic gameLogic;
+    private Logic Logic;
 
     private GraphicsConfiguration config =
             GraphicsEnvironment.getLocalGraphicsEnvironment()
@@ -42,23 +43,23 @@ public class GameWindow extends JFrame implements Runnable {
 
     // Setup
     public GameWindow() {
-        gameLogic = new GameLogic();
+        Logic = new Logic();
         // définition du renderer (2D ou Isometric)
         currentRenderer = new Renderer2D();
-        currentRenderer.setGameLogic(gameLogic);// pour permettre au renderer de trouver les objet à afficher
+        currentRenderer.setLogic(Logic);// pour permettre au renderer de trouver les objet à afficher
 
         // JFrame initialisation
         setTitle("Towers PvP");
         addWindowListener(new FrameClose());
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-       // setSize( GameConfig.WORLD_WIDTH_PIXEL,GameConfig.WORLD_HEIGHT_PIXEL);
+       // setSize( WORLD_WIDTH_PIXEL,WORLD_HEIGHT_PIXEL);
 
 
 
 
         // Canvas
         canvas = new Canvas(config);
-        canvas.setSize( GameConfig.WORLD_WIDTH_PIXEL,GameConfig.WORLD_HEIGHT_PIXEL);
+        canvas.setSize( WORLD_WIDTH_PIXEL,WORLD_HEIGHT_PIXEL);
         add(canvas, 0); // add canvas to frame
 
         pack();
@@ -66,7 +67,7 @@ public class GameWindow extends JFrame implements Runnable {
         setVisible(true);
 
         // Background & Buffer
-        bufferedFullImage = create( GameConfig.WORLD_WIDTH_PIXEL,GameConfig.WORLD_HEIGHT_PIXEL, false);
+        bufferedFullImage = create( WORLD_WIDTH_PIXEL,WORLD_HEIGHT_PIXEL, false);
         canvas.createBufferStrategy(2);
         do {
             strategy = canvas.getBufferStrategy();
@@ -121,8 +122,8 @@ public class GameWindow extends JFrame implements Runnable {
         while (isRunning) {
             long renderStart = System.nanoTime();
 
-            // Update game gameLogic
-            gameLogic.update();
+            // Update game Logic
+            Logic.update();
 
             // Update Graphics
             do {
@@ -141,7 +142,7 @@ public class GameWindow extends JFrame implements Runnable {
             // Better do some FPS limiting here
             long renderTimeMs = (System.nanoTime() - renderStart) / 1000000;
             try {
-                Thread.sleep(Math.max(0, GameConfig.DELAY_BETWEEN_FRAMES - renderTimeMs));
+                Thread.sleep(Math.max(0, DELAY_BETWEEN_FRAMES - renderTimeMs));
             } catch (InterruptedException e) {
                 Thread.interrupted();
                 break;

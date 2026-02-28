@@ -1,33 +1,31 @@
-package Rendering;
+package game.rendering;
 
-import Game.Common.GameConfig;
-import Game.Object.GameLogic;
-import Game.Object.PlayerTest;
-
+import static game.shared.Constants.*; // permet d'utiliser les membre de Constants sans mettre le nom de classe
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import game.logic.core.Logic;
 
 public class Renderer2D implements GameRenderer {
     // Le dictionnaire qui stocke les images
     private static final Map<String, BufferedImage> sprites = new HashMap<>();
-    private GameLogic gameLogic;
+    private Logic Logic;
 
     public Renderer2D()
     {
         LoadSprites();
     }
     @Override
-    public void setGameLogic(GameLogic gameLogic) {
-        this.gameLogic = gameLogic;
+    public void setLogic(Logic Logic) {
+        this.Logic = Logic;
     }
 
     private void LoadSprites()    {
-        loadSprite("background","ressources/background.png");
-        loadSprite("player","ressources/player.png");
+        loadSprite("background","app/src/main/resources/assets/background.png");
+        loadSprite("player","app/src/main/resources/assets/player.png");
     }
 
     public static void loadSprite(String name, String filePath) {
@@ -47,8 +45,8 @@ public class Renderer2D implements GameRenderer {
 
     public void render(Graphics2D g) {
 
-        // On récupère une liste générique (ex: gameLogic.getEntities())
-        for (Renderable entity : gameLogic.getRenderables()) {
+        // On récupère une liste générique (ex: Logic.getEntities())
+        for (Renderable entity : Logic.getRenderables()) {
             drawEntity(g, entity);
         }
     }
@@ -57,8 +55,8 @@ public class Renderer2D implements GameRenderer {
     {
         // 2. Calcul des facteurs d'échelle (Pixels par Mètre)
         // Monde = 100m x 56.25m
-        double scaleX = GameConfig.WORLD_WIDTH_PIXEL / GameConfig.WORLD_WIDTH_METERS;
-        double scaleY = GameConfig.WORLD_HEIGHT_PIXEL / GameConfig.WORLD_HEIGHT_METERS;
+        double scaleX = WORLD_WIDTH_PIXEL / WORLD_WIDTH_METERS;
+        double scaleY = WORLD_HEIGHT_PIXEL / WORLD_HEIGHT_METERS;
 
         BufferedImage sprite = getSprite(entity.getSpriteName());
 

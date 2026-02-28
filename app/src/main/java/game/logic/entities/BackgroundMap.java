@@ -1,7 +1,8 @@
-package Game.Object;
+package game.logic.entities;
+import static game.shared.Constants.WORLD_HEIGHT_METERS;
+import static game.shared.Constants.WORLD_WIDTH_METERS;
 
-import Game.Common.GameConfig;
-import Rendering.Renderable;
+import game.rendering.Renderable;
 
 public class BackgroundMap implements Renderable {
 
@@ -13,10 +14,10 @@ public class BackgroundMap implements Renderable {
 
     public BackgroundMap(String spriteName){
         this.spriteName = spriteName;
-        this.posX = GameConfig.WORLD_WIDTH_METERS/2;// on place les images en fonction de leur centre
-        this.posY= GameConfig.WORLD_HEIGHT_METERS/2;
-        this.width = GameConfig.WORLD_WIDTH_METERS;
-        this.height = GameConfig.WORLD_HEIGHT_METERS;
+        this.posX = WORLD_WIDTH_METERS/2;// on place les images en fonction de leur centre
+        this.posY= WORLD_HEIGHT_METERS/2;
+        this.width = WORLD_WIDTH_METERS;
+        this.height = WORLD_HEIGHT_METERS;
     }
 
     @Override
