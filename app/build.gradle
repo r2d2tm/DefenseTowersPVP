@@ -19,6 +19,7 @@ repositories {
 dependencies {
     // This dependency is used by the application.
     implementation libs.guava
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.21.1'
 }
 
 testing {
@@ -40,5 +41,5 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'org.example.App'
+    mainClass = 'game.App'
 }

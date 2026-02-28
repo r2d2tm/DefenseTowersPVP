@@ -4,6 +4,9 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
+
+import game.example.App;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {

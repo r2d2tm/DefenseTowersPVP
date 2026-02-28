@@ -1,0 +1,28 @@
+{
+  "players": [
+    {
+      "name": "warrior",
+      "posX": 10.0,
+      "posY": 30.0,
+      "width": 3.0,
+      "height": 3.0,
+      "speed": 5.0
+    },
+    {
+      "name": "scout",
+      "posX": 50.0,
+      "posY": 30.0,
+      "width": 2.0,
+      "height": 2.0,
+      "speed": 8.5
+    },
+    {
+      "name": "tank",
+      "posX": 60.0,
+      "posY": 30.0,
+      "width": 5.0,
+      "height": 5.0,
+      "speed": 3.0
+    }
+  ]
+}
